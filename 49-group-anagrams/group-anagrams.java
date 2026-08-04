@@ -3,9 +3,18 @@ class Solution {
         Map<String, List<String>> map = new HashMap<>();
 
         for (String s : strs) {
-            char[] arr = s.toCharArray();
-            Arrays.sort(arr);
-            String key = new String(arr);
+            int[] count = new int[26];
+
+            for (char c : s.toCharArray()) {
+                count[c - 'a']++;
+            }
+
+            StringBuilder keyBuilder = new StringBuilder();
+            for (int num : count) {
+                keyBuilder.append(num).append('#');
+            }
+
+            String key = keyBuilder.toString();
 
             if (!map.containsKey(key)) {
                 map.put(key, new ArrayList<>());
