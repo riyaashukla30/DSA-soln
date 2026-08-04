@@ -16,11 +16,7 @@ class Solution {
 
             String key = keyBuilder.toString();
 
-            if (!map.containsKey(key)) {
-                map.put(key, new ArrayList<>());
-            }
-
-            map.get(key).add(s);
+            map.computeIfAbsent(key, k -> new ArrayList<>()).add(s);
         }
 
         return new ArrayList<>(map.values());
